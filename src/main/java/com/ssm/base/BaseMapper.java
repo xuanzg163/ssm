@@ -12,7 +12,7 @@ public interface BaseMapper<T> {
      * @return
      * @throws DataAccessException
      */
-    public int insert(T entity) throws DataAccessException;
+    public int save(T entity) throws DataAccessException;
     /**
      * 
      * @param entities
@@ -33,6 +33,16 @@ public interface BaseMapper<T> {
      * @return
      */
     public T queryById(Integer id) throws DataAccessException;
+
+
+    /**
+     * 连表查询卡信息 通过id
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
+    public T queryUserCardById(Integer id) throws DataAccessException;
+
 
     /**
      * 分页查询记录

@@ -1,5 +1,6 @@
 package com.ssm.controller;
 
+import com.ssm.dto.UserCardDto;
 import com.ssm.po.User;
 import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +32,48 @@ public class UserController {
     public User queryUser(@PathVariable Integer id, @PathVariable String name) throws Exception {
         return userService.queryById(id);
     }
+
+    /**
+     *  根据用户id删除指定用户
+     * @param id
+     * @return 影响行数
+     * @throws Exception
+     */
+    @RequestMapping(value = "delete/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public int delete(@PathVariable Integer id) throws Exception{
+        return userService.delete(id);
+    }
+
+    /**
+     *  添加用户
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("save")
+    @ResponseBody
+    public int save(User user) throws Exception{
+        return userService.save(user);
+    }
+
+    /**
+     * 更新用户信息
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("update")
+    @ResponseBody
+    public int update(User user) throws Exception{
+        return userService.update(user);
+    }
+
+
+    @RequestMapping("queryUserCardById/{id}")
+    @ResponseBody
+    public UserCardDto queryUserCardById(@PathVariable Integer id) throws Exception{
+        return userService.queryUserCardById(id);
+    }
+
 }

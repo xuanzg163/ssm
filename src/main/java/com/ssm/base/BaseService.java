@@ -2,6 +2,7 @@ package com.ssm.base;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.ssm.dto.UserCardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -17,8 +18,8 @@ public abstract class BaseService<T> {
      * @return
      * @throws Exception
      */
-    public int insert(T entity) throws Exception{
-        int result= baseMapper.insert(entity);
+    public int save(T entity) throws Exception{
+        int result= baseMapper.save(entity);
         return result;
     }
     
@@ -57,8 +58,20 @@ public abstract class BaseService<T> {
         AssertUtil.isNull(id, "记录id非空!");
         return baseMapper.queryById(id);
     }
-    
-    
+
+
+    /**
+     * 连表查询记录通过id
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public UserCardDto queryUserCardById(Integer id)throws Exception{
+        AssertUtil.isNull(id, "记录id非空!");
+        return (UserCardDto) baseMapper.queryUserCardById(id);
+    }
+
+
     /**
      * 分页查询
      * @param baseQuery
@@ -89,7 +102,7 @@ public abstract class BaseService<T> {
     
     
     /**
-     * 查询记录
+     * 更新记录
      * @param entity
      * @return
      * @throws Exception
