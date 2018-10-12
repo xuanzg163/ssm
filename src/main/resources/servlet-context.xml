@@ -59,5 +59,16 @@
             <value>4096</value>
         </property>
     </bean>
+<!--
+    &lt;!&ndash; 全局异常处理 &ndash;&gt;
+        <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+            <property name="defaultErrorView" value="error"></property>
+            <property name="exceptionAttribute" value="ex"></property>
+            <property name="exceptionMappings">
+                <props>
+                    <prop key="com.ssm.exceptions.ParamException">params</prop>
+                </props>
+            </property>
+        </bean>-->
 
 </beans>

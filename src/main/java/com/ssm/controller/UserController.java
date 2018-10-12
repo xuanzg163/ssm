@@ -4,7 +4,9 @@ import com.ssm.po.User;
 import com.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -18,9 +20,15 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("queryUser")
+    /**
+     *  根据用户id查询用户信息
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "queryUser/{id}/{name}",method = RequestMethod.GET)
     @ResponseBody
-    public User queryUser(Integer id) throws Exception {
+    public User queryUser(@PathVariable Integer id, @PathVariable String name) throws Exception {
         return userService.queryById(id);
     }
 }
